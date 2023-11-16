@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@page isELIgnored="false"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,6 +19,16 @@ pageEncoding="UTF-8"%>
           <div class="card">
             <div class="card-body">
               <h4 class="text-center">Đăng ký tài khoản</h4>
+              <c:if test="${not empty succMsg}">
+                <p class="text-center text-success">${succMsg}</p>
+                <c:remove var="succMsg" scope="session" />
+              </c:if>
+
+              <c:if test="${not empty failedMsg}">
+                <p class="text-center text-success">${failedMsg}</p>
+                <c:remove var="failedMsg" scope="session" />
+              </c:if>
+
               <form action="register" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Họ và Tên</label>

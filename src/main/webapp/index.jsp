@@ -11,8 +11,8 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@include file="all_component/navbar.jsp" %> 
-   <%--  <% Connection conn = DBConnect.getConn();
-    out.println(conn); %> --%>
+ <% Connection conn = DBConnect.getConn();
+    out.println(conn); %>
     <div
       class="container-xxl d-flex"
       style="margin-left: 10rem; margin-right: 10rem">
