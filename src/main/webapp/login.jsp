@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +20,12 @@ pageEncoding="UTF-8"%>
           <div class="card">
             <div class="card-body">
               <h5 class="text-center">Đăng nhập</h5>
+              
+              <c:if test="${not empty failedMsg}">
+                <h5 class="text-center text-danger">${failedMsg}</h5>
+                <c:remove var="failedMsg" scope="session" />
+              </c:if>
+
               <form action="login" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
