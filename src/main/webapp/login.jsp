@@ -12,13 +12,13 @@ pageEncoding="UTF-8"%>
 
     <!-- start Login -->
 
-    <div class="container">
+    <div class="container-fluid mt-3">
       <div class="row">
         <div class="col-md-4 offset-md-4">
           <div class="card">
             <div class="card-body">
               <h5 class="text-center">Đăng nhập</h5>
-              <form>
+              <form action="login" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <input
@@ -27,7 +27,8 @@ pageEncoding="UTF-8"%>
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
-                    required="required" />
+                    required="required"
+                    name="email" />
                   <small id="emailHelp" class="form-text text-muted"
                     >We'll never share your email with anyone else.</small
                   >
@@ -39,7 +40,8 @@ pageEncoding="UTF-8"%>
                     class="form-control"
                     id="exampleInputPassword1"
                     placeholder="Password"
-                    required="required" />
+                    required="required"
+                    name="password" />
                 </div>
 
                 <div class="text-center p-3">
