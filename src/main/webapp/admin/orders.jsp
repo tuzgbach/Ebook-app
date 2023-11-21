@@ -12,6 +12,16 @@ pageEncoding="UTF-8"%>
     <div class="container p-5">
       <h4>Hello Admin</h4>
       <table class="table table-striped">
+        <div class="mb-1" style="display: flex">
+          <button class="btn btn-primary">
+            <a href="add_books.jsp" style="color: aliceblue">Thêm sản phẩm</a>
+          </button>
+          <button class="btn btn-primary" style="margin-left: 8px">
+            <a href="all_books.jsp" style="color: aliceblue"
+              >Quản lí sản phẩm</a
+            >
+          </button>
+        </div>
         <thead class="bg-danger text-white">
           <tr>
             <th scope="col">Order Id</th>

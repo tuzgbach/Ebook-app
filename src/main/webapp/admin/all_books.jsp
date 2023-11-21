@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%> <%@page import="com.entity.BookDtls"%> <%@page
+import="com.DB.DBConnect"%> <%@page import="com.DAO.BookDAOImpl"%> <%@ page
+language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,57 +10,48 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@include file="navbar.jsp" %>
-    <div class="container p-5">
+    <div class="container p-3">
       <h4>Hello Admin</h4>
       <table class="table table-striped">
+        <button class="btn btn-primary" style="margin-left: 60rem;">
+          <a href="orders.jsp" style="color: aliceblue"
+            >Quản lí đơn hàng</a
+          >
+        </button>
         <thead class="bg-danger text-white">
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Tên Sách</th>
-            <th scope="col">Tác Giả</th>
-            <th scope="col">Giá Cả</th>
-            <th scope="col">Danh Mục</th>
-            <th scope="col">Status</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Tác giả</th>
+            <th scope="col">Giá sách</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Tình trạng</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-primary">Edit</a>
-              <a href="#" class="btn btn-sm btn-danger">Remove</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-primary">Edit</a>
-              <a href="#" class="btn btn-sm btn-danger">Remove</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-primary">Edit</a>
-              <a href="#" class="btn btn-sm btn-danger">Remove</a>
-            </td>
-          </tr>
+        <%
+          BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
+          List<BookDtls> list= dao.getAllBooks();
+          
+          for(BookDtls b:list) {
+            %>
+              <tr>
+                <td><img src="../book/<%=b.getPhotoName()%>" style="width:100px; height:100px;"></td>
+                <td> <%=b.getBookName()%></td>
+                <td><%=b.getAuthor()%></td>
+                <td><%=b.getPrice()%></td>
+                <td><%=b.getBookCategory()%></td>
+                <td><%=b.getStatus()%></td>
+                <td>
+                  <a href="add_books.jsp" class="btn btn-sm btn-danger">Thêm</a>
+                  <a href="#" class="btn btn-sm btn-primary">Sửa</a>
+                  <a href="#" class="btn btn-sm btn-danger">Xoá</a>
+                </td>
+              </tr>      	
+            <%
+          }
+        %>
         </tbody>
       </table>
     </div>
