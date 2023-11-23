@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@page
+isELIgnored="false"%>
 <div
   class="container-fluid"
   style="height: 15px; background-color: #2196f3"></div>
@@ -21,7 +23,23 @@
         </form>
       </div>
       <div class="col-md-3">
-        <a href="#" class="btn btn-success"> Login</a>
+        <c:if test="${not empty userobj}">
+          <a href="login.jsp" class="btn btn-success"
+            ><i class="fa-solid fa-right-to-bracket"></i>${userobj.name}</a
+          >
+          <a href="../register.jsp" class="btn btn-primary"
+            ><i class="fa-solid fa-right-from-bracket"></i>Logout
+          </a>
+        </c:if>
+
+        <c:if test="${empty userobj}">
+          <a href="../login.jsp" class="btn btn-success"
+            ><i class="fa-solid fa-right-to-bracket"></i>Login
+          </a>
+          <a href="../register.jsp" class="btn btn-primary"
+            ><i class="fa-solid fa-registered"></i>Register
+          </a>
+        </c:if>
       </div>
     </div>
   </div>
