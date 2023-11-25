@@ -1,6 +1,8 @@
-<%@page import="java.sql.Connection"%>
-<%@page import="com.DB.DBConnect"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="com.entity.BookDtls"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DAO.BookDAOImpl"%>
+<%@page import="java.sql.Connection"%> <%@page import="com.DB.DBConnect"%> <%@
+page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,9 +12,8 @@ pageEncoding="UTF-8"%>
     <%@include file="all_component/allCss.jsp" %>
   </head>
   <body>
-    <%@include file="all_component/navbar.jsp" %> 
-<%--  <% Connection conn = DBConnect.getConn();
-    out.println(conn); %> --%>
+    <%@include file="all_component/navbar.jsp" %> <%-- <% Connection conn =
+    DBConnect.getConn(); out.println(conn); %> --%>
     <div
       class="container-xxl d-flex"
       style="margin-left: 10rem; margin-right: 10rem">
@@ -79,102 +80,40 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
-
     <!-- Start recent book  -->
     <div class="container">
       <h3 class="text-center">Recent Book</h3>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card">
+      <div class="row"> 
+      <% 
+      BookDAOImpl dao2 = new BookDAOImpl(DBConnect.getConn()); 
+      List <BookDtls> list2 = dao2.getRecentBooks(); 
+      
+      for(BookDtls b:list2) {
+    	  %>
+    	    <div class="col-md-3">
+          	<div class="card">
             <div class="card-body text-center">
               <img
-                src="book/1.jpg"
+                src="book/<%=b.getPhotoName()%>"
                 alt=""
                 style="height: 200px; width: 150px"
                 class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
+              <p><%=b.getBookName()%></p>
               <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
+                  <%=b.getAuthor()%>
               </p>
-              <p>Category:New</p>
+              <p>Category:<%=b.getBookCategory()%></p>
               <div class="row">
-                <a href="" class="btn btn-danger btn-sm">Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
+                <a href="" class="btn btn-danger btn-sm">Cart<i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
+                <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
+    	  
+    	 <%}
+      %>     
       </div>
       <div class="text-center mt-2">
         <a href="" class="btn btn-danger btn-sm text-white"> View All</a>
@@ -188,97 +127,37 @@ pageEncoding="UTF-8"%>
     <div class="container">
       <h3 class="text-center">New Book</h3>
       <div class="row">
-        <div class="col-md-3">
-          <div class="card">
+     
+        <%
+        BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn()); 
+        List <BookDtls> list = dao.getNewBook(); 
+        for(BookDtls b:list) {
+        %>
+        	<div class="col-md-3">
+        	<div class="card crd-ho">
             <div class="card-body text-center">
               <img
-                src="book/1.jpg"
+                src="book/<%=b.getPhotoName()%>"
                 alt=""
                 style="height: 200px; width: 150px"
                 class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
+              <p><%=b.getBookName()%></p>
               <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
+                <%=b.getAuthor()%>
               </p>
-              <p>Category:New</p>
+              <p>Category: <%=b.getBookCategory()%></p>
               <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
+                <a href="" class="btn btn-danger btn-sm">Cart<i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>View</a>
+                <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
               </div>
             </div>
           </div>
-        </div>
+         </div>
+          
+        <%}
+        %>
 
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-danger btn-sm"> Add To Cart</a>
-                <a href="" class="btn btn-success btn-sm ml-1"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="text-center mt-2">
         <a href="" class="btn btn-danger btn-sm text-white"> View All</a>
@@ -291,96 +170,36 @@ pageEncoding="UTF-8"%>
     <div class="container">
       <h3 class="text-center">Old Book</h3>
       <div class="row">
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-success btn-sm ml-5"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
+        <% 
+        BookDAOImpl dao3 = new BookDAOImpl(DBConnect.getConn()); 
+        List <BookDtls> list3 = dao3.getNewBook(); 
+        for (BookDtls b:list) {
+          %>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body text-center">
+                <img
+                  src="book/<%=b.getPhotoName()%>"
+                  alt=""
+                  style="height: 200px; width: 150px"
+                  class="img-thumblin" />
+                <p><%=b.getBookName()%></p>
+                <p>
+                 <%=b.getAuthor()%>
+                </p>
+                <p>Category: <%=b.getBookCategory()%></p>
+                <div class="row">
+                  <a href="" class="btn btn-success btn-sm ml-5"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice() %> </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-success btn-sm ml-5"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-success btn-sm ml-5"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card">
-            <div class="card-body text-center">
-              <img
-                src="book/1.jpg"
-                alt=""
-                style="height: 200px; width: 150px"
-                class="img-thumblin" />
-              <p>Scratch Surprise: Awesome Worlds</p>
-              <p>
-                Explore the world of etching and scratch-art with the new
-                series, Scratch Surprise
-              </p>
-              <p>Category:New</p>
-              <div class="row">
-                <a href="" class="btn btn-success btn-sm ml-5"> View Details</a>
-                <a href="" class="btn btn-danger btn-sm ml-1"> 199</a>
-              </div>
-            </div>
-          </div>
-        </div>
+          <%}
+        %>
       </div>
       <div class="text-center mt-2">
-        <a href="" class="btn btn-danger btn-sm text-white"> View All</a>
+        <a href="" class="btn btn-danger btn-sm text-white">View All</a>
       </div>
     </div>
     <!-- end old book -->

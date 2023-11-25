@@ -26,6 +26,11 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@page isELIgnored="false"%>
                 <c:remove var="failedMsg" scope="session" />
               </c:if>
 
+              <c:if test="${not empty succMsg}">
+                <h5 class="text-center text-danger">${succMsg}</h5>
+                <c:remove var="succMsg" scope="session" />
+              </c:if>
+
               <form action="login" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
