@@ -3,7 +3,11 @@
 }
 
 .navbar .nav-item:hover .nav-link {
-  background-color: white;
-  color: black;
+  background-color: rgb(240, 240, 240);
+  color: rgb(47, 47, 47);
   border-radius: 15px;
+}
+
+.index-home {
+  background-color: rgb(255, 255, 255);
 }

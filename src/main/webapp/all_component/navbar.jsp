@@ -43,22 +43,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"
+          <a class="nav-link" href="index.jsp"
             >Home <span class="sr-only">(current)</span></a
           >
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#"
+          <a class="nav-link" href="all_recent_book.jsp"
             ><i class="fa-solid fa-book-open"></i>Recent Book</a
           >
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#"
+          <a class="nav-link" href="all_new_book.jsp"
             ><i class="fa-solid fa-book-open-reader"></i>New Book</a
           >
         </li>
         <li class="nav-item active">
-          <a class="nav-link disabled" href="#"
+          <a class="nav-link disabled" href="all_old_book.jsp"
             ><i class="fa-solid fa-book-tanakh"></i>Old Book</a
           >
         </li>
