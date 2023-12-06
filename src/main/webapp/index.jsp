@@ -13,8 +13,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="container-fluid index-home">
-      <%@include file="all_component/navbar.jsp" %> <%-- <% Connection conn =
-      DBConnect.getConn(); out.println(conn); %> --%>
+      <%@include file="all_component/navbar.jsp" %> 
       <div
         class="container-xxl d-flex"
         style="margin-left: 9rem; margin-right: 10rem">
@@ -86,7 +85,7 @@ pageEncoding="UTF-8"%>
         <h3 class="text-center">Recent Book</h3>
         <div class="row"> 
         <% 
-        BookDAOImpl dao2 = new BookDAOImpl(DBConnect.getConn()); 
+        BookDAOImpl dao2 = new BookDAOImpl(new DBConnect().getConn()); 
         List <BookDtls> list2 = dao2.getRecentBooks(); 
         
         for(BookDtls b:list2) {
@@ -103,12 +102,27 @@ pageEncoding="UTF-8"%>
                 <p>
                     <%=b.getAuthor()%>
                 </p>
-                <p>Category:<%=b.getBookCategory()%></p>
+                <p>
+                <%
+                if(b.getBookCategory().equals("Old")) 
+                {%>
+                   Category:<%=b.getBookCategory()%></p>
+                <div class="row">
+               
+                  <a href="view_product.jsp?bid=<%=b.getBookId() %>" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
+                </div>	
+                <%} else 
+                {%>
+                   Category:<%=b.getBookCategory()%></p>
                 <div class="row">
                   <a href="" class="btn btn-danger btn-sm">Cart<i class="fa-solid fa-cart-shopping"></i></a>
-                  <a href="" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="view_product.jsp?bid=<%=b.getBookId() %>" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
                   <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
                 </div>
+                	
+                <%}
+                %>
               </div>
             </div>
           </div>
@@ -130,7 +144,7 @@ pageEncoding="UTF-8"%>
         <div class="row">
        
           <%
-          BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn()); 
+          BookDAOImpl dao = new BookDAOImpl(new DBConnect().getConn()); 
           List <BookDtls> list = dao.getNewBook(); 
           for(BookDtls b:list) {
           %>
@@ -149,7 +163,7 @@ pageEncoding="UTF-8"%>
                 <p>Category: <%=b.getBookCategory()%></p>
                 <div class="row" style=" margin-left: 5px">
                   <a href="" class="btn btn-danger btn-sm">Cart<i class="fa-solid fa-cart-shopping"></i></a>
-                  <a href="" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="view_product.jsp?bid=<%=b.getBookId() %>" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>View</a>
                   <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
                 </div>
               </div>
@@ -171,33 +185,51 @@ pageEncoding="UTF-8"%>
       <div class="container">
         <h3 class="text-center">Old Book</h3>
         <div class="row">
-          <% 
-          BookDAOImpl dao3 = new BookDAOImpl(DBConnect.getConn()); 
-          List <BookDtls> list3 = dao3.getNewBook(); 
-          for (BookDtls b:list) {
-            %>
+      <% 
+        BookDAOImpl dao3 = new BookDAOImpl(new DBConnect().getConn()); 
+        List <BookDtls> list3 = dao3.getAllOldBooks(); 
+        
+        for(BookDtls b:list3) {
+          %>
             <div class="col-md-3">
               <div class="card">
-                <div class="card-body text-center">
-                  <img
-                    src="book/<%=b.getPhotoName()%>"
-                    alt=""
-                    style="height: 200px; width: 150px"
-                    class="img-thumblin" />
-                  <p><%=b.getBookName()%></p>
-                  <p>
-                   <%=b.getAuthor()%>
-                  </p>
-                  <p>Category: <%=b.getBookCategory()%></p>
-                  <div class="row">
-                    <a href="" class="btn btn-success btn-sm ml-5"><i class="fa-solid fa-eye"></i>View</a>
-                    <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice() %> </a>
-                  </div>
+              <div class="card-body text-center">
+                <img
+                  src="book/<%=b.getPhotoName()%>"
+                  alt=""
+                  style="height: 200px; width: 150px"
+                  class="img-thumblin" />
+                <p><%=b.getBookName()%></p>
+                <p>
+                    <%=b.getAuthor()%>
+                </p>
+                <p>
+                <%
+                if(b.getBookCategory().equals("Old")) 
+                {%>
+                   Category:<%=b.getBookCategory()%></p>
+                <div class="row">
+               
+                  <a href="view_product.jsp?bid=<%=b.getBookId() %>" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
+                </div>	
+                <%} else 
+                {%>
+                   Category:<%=b.getBookCategory()%></p>
+                <div class="row">
+                  <a href="" class="btn btn-danger btn-sm">Cart<i class="fa-solid fa-cart-shopping"></i></a>
+                  <a href="view_product.jsp" class="btn btn-success btn-sm ml-1"><i class="fa-solid fa-eye"></i>View</a>
+                  <a href="" class="btn btn-danger btn-sm ml-1"><i class="fa-solid fa-dollar-sign"></i><%=b.getPrice()%></a>
                 </div>
+                	
+                <%}
+                %>
               </div>
             </div>
-            <%}
-          %>
+          </div>
+          
+         <%}
+        %> 
         </div>
         <div class="text-center mt-2">
           <a href="" class="btn btn-danger btn-sm text-white">View All</a>
@@ -205,7 +237,6 @@ pageEncoding="UTF-8"%>
       </div>
       <!-- end old book -->
       <hr />
-  
       <%@include file="all_component/footer.jsp" %>
     </div>
    

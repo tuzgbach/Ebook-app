@@ -63,7 +63,7 @@ isELIgnored="false"%>
               <h4 class="text-center">Thêm sách mới</h4>
 
               <% int id=Integer.parseInt(request.getParameter("id"));
-              BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn()); BookDtls b
+              BookDAOImpl dao = new BookDAOImpl(new DBConnect().getConn()); BookDtls b
               = dao.getBookById(id); %>
 
               <form action="../editbooks" method="post">

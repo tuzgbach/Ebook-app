@@ -52,7 +52,7 @@ isELIgnored="false"%>
         </thead>
         <tbody>
         <%
-          BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
+          BookDAOImpl dao = new BookDAOImpl(new DBConnect().getConn());
           List<BookDtls> list= dao.getAllBooks();
           
           for(BookDtls b:list) {

@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
         <div class="container-fluid">
             <div class="row p-5">
               <% 
-              BookDAOImpl dao2 = new BookDAOImpl(DBConnect.getConn()); 
+              BookDAOImpl dao2 = new BookDAOImpl(new DBConnect().getConn()); 
               List <BookDtls> list2 = dao2.getAllRecentBooks();
               
               for(BookDtls b:list2) {

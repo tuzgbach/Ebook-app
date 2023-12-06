@@ -1,5 +1,7 @@
+@charset "UTF-8";
+
 .bg-custom {
-  background-color: #2196f3;
+  background-color: rgb(252, 73, 0);
 }
 
 .navbar .nav-item:hover .nav-link {
@@ -9,5 +11,5 @@
 }
 
 .index-home {
-  background-color: rgb(255, 255, 255);
+	background-color: white;
 }

@@ -17,8 +17,10 @@
         <div class="container-fluid">
             <div class="row p-5">
                 <% 
-          BookDAOImpl dao3 = new BookDAOImpl(DBConnect.getConn()); 
+          BookDAOImpl dao3 = new BookDAOImpl(new DBConnect().getConn()); 
           List <BookDtls> list3 = dao3.getAllOldBooks(); 
+          
+            
           for (BookDtls b:list3) {
             %>
             <div class="col-md-3">

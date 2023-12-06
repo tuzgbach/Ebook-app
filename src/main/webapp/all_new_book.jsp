@@ -15,7 +15,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <div class="row p-5">
              
           <%
-          BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn()); 
+          BookDAOImpl dao = new BookDAOImpl(new DBConnect().getConn()); 
           List <BookDtls> list = dao.getAllNewBooks(); 
           for(BookDtls b:list) {
           %>
